@@ -1,5 +1,5 @@
 class Trans {
-  final String id;
+  final DateTime id;
   final String title;
   final double value;
   final DateTime date;
