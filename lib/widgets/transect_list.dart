@@ -18,6 +18,7 @@ class Trans_list extends StatelessWidget {
             children: <Widget>[
               Container(
                   padding: EdgeInsets.all(10),
+                  // ignore: prefer_const_constructors
                   margin: EdgeInsets.symmetric(
                     vertical: 10,
                     horizontal: 15,
