@@ -1,8 +1,8 @@
 class Trans {
-  final DateTime id;
+  final String id;
   final String title;
   final double value;
-  final DateTime date;
+  final String date;
 
   Trans({
     required this.id,
