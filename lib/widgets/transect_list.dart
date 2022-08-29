@@ -1,10 +1,8 @@
-import 'package:intl/intl.dart';
 import '../models/transection.dart';
 import 'package:flutter/material.dart';
 
 class Trans_list extends StatelessWidget {
   final List<Trans> _transect;
-
   Trans_list(this._transect);
   @override
   Widget build(BuildContext context) {
@@ -42,7 +40,7 @@ class Trans_list extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    DateFormat('m-s').format(tx.id),
+                    tx.id.toString(),
                     style: TextStyle(
                       fontWeight: FontWeight.normal,
                       fontSize: 15,
@@ -58,7 +56,7 @@ class Trans_list extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    DateFormat.MMMMd().format(tx.date),
+                    tx.date,
                     style: TextStyle(
                       fontWeight: FontWeight.w200,
                       fontSize: 13,

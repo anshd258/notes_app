@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../main.dart';
 
 class new_transect extends StatelessWidget {
   final Function add_func;

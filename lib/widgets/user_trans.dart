@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../widgets/new_transa.dart';
 import '../widgets/transect_list.dart';
 import '../models/transection.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
 
 class user_trans extends StatefulWidget {
   @override
@@ -9,18 +11,33 @@ class user_trans extends StatefulWidget {
 }
 
 class _user_transState extends State<user_trans> {
-  final List<Trans> _usertransection = [];
+  final List<Trans> point = [];
+  int idm = 0;
 
-  void _adding(String txtitle, double txvalue) {
-    final netx = Trans(
-      title: txtitle,
-      value: txvalue,
-      date: DateTime.now(),
-      id: DateTime.now(),
+  Future<void> _adding(String txtitle, double txvalue) async {
+    idm += 1;
+    final url = Uri.parse(
+        'https://login-test-98bcc-default-rtdb.asia-southeast1.firebasedatabase.app/todo.json');
+    await post(
+      url,
+      body: json.encode({
+        'id': idm,
+        'title': txtitle,
+        'value': txvalue,
+        'date': '0-1-5',
+      }),
     );
-
+    point.clear();
+    final respo = await get(url);
+    final mass = await json.decode(respo.body) as Map<String, dynamic>;
     setState(() {
-      _usertransection.add(netx);
+      mass.forEach((id, data) {
+        point.add(Trans(
+            id: data['id'].toString(),
+            title: data['title'],
+            value: data['value'],
+            date: data['date']));
+      });
     });
   }
 
@@ -29,7 +46,7 @@ class _user_transState extends State<user_trans> {
     return Column(
       children: <Widget>[
         new_transect(_adding),
-        Trans_list(_usertransection),
+        Trans_list(point),
       ],
     );
   }
