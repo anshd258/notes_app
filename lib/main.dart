@@ -1,15 +1,20 @@
 // ignore_for_file: sort_child_properties_last, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+
 import './widgets/user_trans.dart';
 
-void main() => runApp(MyApp());
+void main() async => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => MyAppState();
+}
+
+class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
       home: MyHomePage(),
     );
   }
@@ -22,11 +27,13 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('NOTES'),
-        ),
-        // ignore: prefer_const_literals_to_create_immutables
-        body: Column(
+      appBar: AppBar(
+        title: Text('NOTES'),
+      ),
+      // ignore: prefer_const_literals_to_create_immutables
+      body:
+          ListView(scrollDirection: Axis.vertical, shrinkWrap: true, children: [
+        Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           //crossAxisAlignment: CrossAxisAlignment.start,
           //mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -45,6 +52,8 @@ class MyHomePage extends StatelessWidget {
             ),
             user_trans(),
           ],
-        ));
+        )
+      ]),
+    );
   }
 }
